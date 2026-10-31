@@ -1,5 +1,9 @@
 data/.DS_Store
 DataSet/.DS_Store
+__pycache__/
+.venv/
+data/external/
+data/stage1/
 .DS_Store
 .DS_Store
 DataSet/.DS_Store
