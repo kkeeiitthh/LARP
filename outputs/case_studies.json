@@ -1,0 +1,134 @@
+[
+  {
+    "horizon": 3,
+    "case": "correct",
+    "airport": "ATL",
+    "event_time_utc": "2025-03-15 20:25:00+00:00",
+    "carrier": "DL",
+    "destination": "GRR",
+    "actual_severe": 1,
+    "probability": 0.23461047317929015,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 3,
+    "case": "incorrect",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-14 03:52:00+00:00",
+    "carrier": "AA",
+    "destination": "COS",
+    "actual_severe": 0,
+    "probability": 0.2034790541362068,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 3,
+    "case": "borderline",
+    "airport": "ATL",
+    "event_time_utc": "2025-05-27 00:45:00+00:00",
+    "carrier": "DL",
+    "destination": "PBI",
+    "actual_severe": 0,
+    "probability": 0.20008147633668613,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 6,
+    "case": "correct",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-15 23:35:00+00:00",
+    "carrier": "AA",
+    "destination": "RDU",
+    "actual_severe": 1,
+    "probability": 0.3990036186625002,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 6,
+    "case": "incorrect",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-14 03:52:00+00:00",
+    "carrier": "AA",
+    "destination": "COS",
+    "actual_severe": 0,
+    "probability": 0.2699792577270234,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 6,
+    "case": "borderline",
+    "airport": "ATL",
+    "event_time_utc": "2025-06-23 19:30:00+00:00",
+    "carrier": "UA",
+    "destination": "EWR",
+    "actual_severe": 0,
+    "probability": 0.20006829665353768,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 9,
+    "case": "correct",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-15 23:35:00+00:00",
+    "carrier": "AA",
+    "destination": "RDU",
+    "actual_severe": 1,
+    "probability": 0.3254228008410293,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 9,
+    "case": "incorrect",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-15 01:55:00+00:00",
+    "carrier": "AA",
+    "destination": "DCA",
+    "actual_severe": 0,
+    "probability": 0.3288910055830239,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 9,
+    "case": "borderline",
+    "airport": "ATL",
+    "event_time_utc": "2025-06-13 03:00:00+00:00",
+    "carrier": "DL",
+    "destination": "MIA",
+    "actual_severe": 1,
+    "probability": 0.19961806252117023,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 12,
+    "case": "correct",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-15 23:35:00+00:00",
+    "carrier": "AA",
+    "destination": "RDU",
+    "actual_severe": 1,
+    "probability": 0.27523202170759853,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 12,
+    "case": "incorrect",
+    "airport": "DFW",
+    "event_time_utc": "2025-03-15 01:55:00+00:00",
+    "carrier": "AA",
+    "destination": "DCA",
+    "actual_severe": 0,
+    "probability": 0.3569478044354099,
+    "threshold": 0.2
+  },
+  {
+    "horizon": 12,
+    "case": "borderline",
+    "airport": "DFW",
+    "event_time_utc": "2025-06-20 23:38:00+00:00",
+    "carrier": "OO",
+    "destination": "HOU",
+    "actual_severe": 0,
+    "probability": 0.19984951266148623,
+    "threshold": 0.2
+  }
+]

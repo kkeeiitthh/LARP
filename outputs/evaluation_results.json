@@ -1,0 +1,4448 @@
+{
+  "version": "2026-10-31-v2",
+  "source_fingerprint": "1e0f5923ba4e57ce2a5e",
+  "target_definition": {
+    "throughput": "completed sampled arrivals per UTC hour; observed throughput proxy",
+    "delay": "ARR_DELAY > 45 on completed, non-diverted ATL/DFW-origin flights; relative to scheduled departure"
+  },
+  "weather_method": "Past observations with 20-minute assumed reporting latency and 3-hour staleness limit; persistence context, no true weather forecasts.",
+  "schedule_assumption": "Archived CRS schedules are assumed known at issue time. No historical schedule revisions were supplied.",
+  "horizons": {
+    "3": {
+      "delay": {
+        "selected_model": "gradient_boosting",
+        "selection_rule": "validation PR-AUC",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "logistic_regression": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6495276688682473,
+            "pr_auc": 0.18019615556391433,
+            "brier_score": 0.08108371417859479,
+            "log_loss": 0.3162535242122083,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "gradient_boosting_small": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.683732205352209,
+            "pr_auc": 0.19561463735158766,
+            "brier_score": 0.07975876399139385,
+            "log_loss": 0.29493162105535453,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "gradient_boosting": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6875608504591744,
+            "pr_auc": 0.19896266780243269,
+            "brier_score": 0.07970888289916396,
+            "log_loss": 0.2947430361823397,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "random_forest": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6906165302739258,
+            "pr_auc": 0.19237871111095406,
+            "brier_score": 0.0780612002321174,
+            "log_loss": 0.28431797342550535,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 11169,
+          "test": 2392,
+          "validation": 1368,
+          "calibration": 875,
+          "purged": 96
+        },
+        "features": [
+          "airport",
+          "carrier",
+          "destination",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h",
+          "planned_elapsed_minutes",
+          "distance_miles"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.2,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9100877192982456,
+            "precision": 0.42857142857142855,
+            "recall": 0.02459016393442623,
+            "f1": 0.046511627906976744,
+            "threshold": 0.2,
+            "roc_auc": 0.6875608504591744,
+            "pr_auc": 0.19896266780243269,
+            "brier_score": 0.07970888289916396,
+            "log_loss": 0.2947430361823397,
+            "confusion_matrix": [
+              [
+                1242,
+                4
+              ],
+              [
+                119,
+                3
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9291666666666667,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.2,
+                "roc_auc": 0.678361030510859,
+                "pr_auc": 0.14397745387076327,
+                "brier_score": 0.06515721600304746,
+                "log_loss": 0.2520427616037347,
+                "confusion_matrix": [
+                  [
+                    669,
+                    0
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9291666666666667,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.07083333333333333,
+                "brier_score": 0.06601136482058388,
+                "log_loss": 0.25711641891376313,
+                "confusion_matrix": [
+                  [
+                    669,
+                    0
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8888888888888888,
+                "precision": 0.42857142857142855,
+                "recall": 0.04225352112676056,
+                "f1": 0.07692307692307693,
+                "threshold": 0.2,
+                "roc_auc": 0.6788756804257084,
+                "pr_auc": 0.2418453978138486,
+                "brier_score": 0.09587740167262676,
+                "log_loss": 0.34218778571412295,
+                "confusion_matrix": [
+                  [
+                    573,
+                    4
+                  ],
+                  [
+                    68,
+                    3
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8904320987654321,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1095679012345679,
+                "brier_score": 0.09780535550516503,
+                "log_loss": 0.3467609232270426,
+                "confusion_matrix": [
+                  [
+                    577,
+                    0
+                  ],
+                  [
+                    71,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9100877192982456,
+            "precision": 0.42857142857142855,
+            "recall": 0.02459016393442623,
+            "f1": 0.046511627906976744,
+            "threshold": 0.2,
+            "roc_auc": 0.6875608504591744,
+            "pr_auc": 0.19896266780243269,
+            "brier_score": 0.07970888289916396,
+            "log_loss": 0.2947430361823397,
+            "confusion_matrix": [
+              [
+                1242,
+                4
+              ],
+              [
+                119,
+                3
+              ]
+            ]
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8617142857142858,
+            "precision": 0.19402985074626866,
+            "recall": 0.1625,
+            "f1": 0.17687074829931973,
+            "threshold": 0.2,
+            "roc_auc": 0.6531446540880503,
+            "pr_auc": 0.156811407541151,
+            "brier_score": 0.0817217690282487,
+            "log_loss": 0.29633196811119367,
+            "confusion_matrix": [
+              [
+                741,
+                54
+              ],
+              [
+                67,
+                13
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.9085714285714286,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5165880503144653,
+            "pr_auc": 0.09435235895743979,
+            "brier_score": 0.08343168664095268,
+            "log_loss": 0.3075726803658052,
+            "confusion_matrix": [
+              [
+                795,
+                0
+              ],
+              [
+                80,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9117647058823529,
+                "precision": 0.3333333333333333,
+                "recall": 0.02631578947368421,
+                "f1": 0.04878048780487805,
+                "threshold": 0.2,
+                "roc_auc": 0.7388613861386137,
+                "pr_auc": 0.22044176357950898,
+                "brier_score": 0.07474784251080209,
+                "log_loss": 0.26853107869924653,
+                "confusion_matrix": [
+                  [
+                    402,
+                    2
+                  ],
+                  [
+                    37,
+                    1
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9140271493212669,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.08597285067873303,
+                "brier_score": 0.07858286807326836,
+                "log_loss": 0.2931287481882887,
+                "confusion_matrix": [
+                  [
+                    404,
+                    0
+                  ],
+                  [
+                    38,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.8106235565819861,
+                "precision": 0.1875,
+                "recall": 0.2857142857142857,
+                "f1": 0.22641509433962265,
+                "threshold": 0.2,
+                "roc_auc": 0.5864084764340518,
+                "pr_auc": 0.15555045176615517,
+                "brier_score": 0.08884065013843667,
+                "log_loss": 0.3247107051090706,
+                "confusion_matrix": [
+                  [
+                    339,
+                    52
+                  ],
+                  [
+                    30,
+                    12
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.9030023094688222,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.09699769053117784,
+                "brier_score": 0.08838128896639487,
+                "log_loss": 0.3223168328426235,
+                "confusion_matrix": [
+                  [
+                    391,
+                    0
+                  ],
+                  [
+                    42,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8617142857142858,
+            "precision": 0.19402985074626866,
+            "recall": 0.1625,
+            "f1": 0.17687074829931973,
+            "threshold": 0.2,
+            "roc_auc": 0.6531446540880503,
+            "pr_auc": 0.156811407541151,
+            "brier_score": 0.0817217690282487,
+            "log_loss": 0.29633196811119367,
+            "confusion_matrix": [
+              [
+                741,
+                54
+              ],
+              [
+                67,
+                13
+              ]
+            ]
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7801003344481605,
+            "precision": 0.37209302325581395,
+            "recall": 0.4345679012345679,
+            "f1": 0.4009111617312073,
+            "threshold": 0.2,
+            "roc_auc": 0.7270064058354614,
+            "pr_auc": 0.3716723142916628,
+            "brier_score": 0.12844662538517385,
+            "log_loss": 0.41535002773000157,
+            "confusion_matrix": [
+              [
+                1690,
+                297
+              ],
+              [
+                229,
+                176
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.830685618729097,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5190335949101257,
+            "pr_auc": 0.17500421971784963,
+            "brier_score": 0.1447393759222666,
+            "log_loss": 0.4747156175758858,
+            "confusion_matrix": [
+              [
+                1987,
+                0
+              ],
+              [
+                405,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.811973018549747,
+                "precision": 0.40437158469945356,
+                "recall": 0.39361702127659576,
+                "f1": 0.39892183288409705,
+                "threshold": 0.2,
+                "roc_auc": 0.7372137892806889,
+                "pr_auc": 0.40973749692747946,
+                "brier_score": 0.1210856100592956,
+                "log_loss": 0.3960918790498613,
+                "confusion_matrix": [
+                  [
+                    889,
+                    109
+                  ],
+                  [
+                    114,
+                    74
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.8414839797639123,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.15851602023608768,
+                "brier_score": 0.13882102965029122,
+                "log_loss": 0.465686990906047,
+                "confusion_matrix": [
+                  [
+                    998,
+                    0
+                  ],
+                  [
+                    188,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.7487562189054726,
+                "precision": 0.35172413793103446,
+                "recall": 0.4700460829493088,
+                "f1": 0.40236686390532544,
+                "threshold": 0.2,
+                "roc_auc": 0.7157697809545555,
+                "pr_auc": 0.3639115573122794,
+                "brier_score": 0.13568556748840063,
+                "log_loss": 0.434288804126889,
+                "confusion_matrix": [
+                  [
+                    801,
+                    188
+                  ],
+                  [
+                    115,
+                    102
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.8200663349917081,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1799336650082919,
+                "brier_score": 0.15055957383152266,
+                "log_loss": 0.48359451577690477,
+                "confusion_matrix": [
+                  [
+                    989,
+                    0
+                  ],
+                  [
+                    217,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7801003344481605,
+            "precision": 0.37209302325581395,
+            "recall": 0.4345679012345679,
+            "f1": 0.4009111617312073,
+            "threshold": 0.2,
+            "roc_auc": 0.7270064058354614,
+            "pr_auc": 0.3716723142916628,
+            "brier_score": 0.12844662538517385,
+            "log_loss": 0.41535002773000157,
+            "confusion_matrix": [
+              [
+                1690,
+                297
+              ],
+              [
+                229,
+                176
+              ]
+            ]
+          }
+        },
+        "feature_importance": [
+          {
+            "feature": "month",
+            "importance": 0.03717318804797756
+          },
+          {
+            "feature": "temperature_c",
+            "importance": 0.03397740578373909
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.0308993108678218
+          },
+          {
+            "feature": "dewpoint_spread_c",
+            "importance": 0.028494223257933896
+          },
+          {
+            "feature": "weather_age_minutes",
+            "importance": 0.015201991181222535
+          },
+          {
+            "feature": "wind_speed_kt",
+            "importance": 0.013370252919127884
+          },
+          {
+            "feature": "hour",
+            "importance": 0.011444344935535394
+          },
+          {
+            "feature": "headwind_kt",
+            "importance": 0.008905218288004751
+          },
+          {
+            "feature": "visibility_m_past3h_mean",
+            "importance": 0.007259322404033888
+          },
+          {
+            "feature": "visibility_m_past6h_mean",
+            "importance": 0.00721295394148741
+          },
+          {
+            "feature": "dew_point_c",
+            "importance": 0.006340126134232335
+          },
+          {
+            "feature": "wind_direction_cos",
+            "importance": 0.005164993780873983
+          },
+          {
+            "feature": "wind_speed_kt_past3h_mean",
+            "importance": 0.00496898656682454
+          },
+          {
+            "feature": "visibility_m",
+            "importance": 0.004672341754969639
+          },
+          {
+            "feature": "sea_level_pressure_hpa_past3h_mean",
+            "importance": 0.004183830605486577
+          }
+        ],
+        "weather_unmatched_fraction": 0.00012578616352201257
+      },
+      "throughput": {
+        "selected_model": "gradient_boosting",
+        "selection_rule": "validation RMSE",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "ridge_regression": {
+            "rows": 3984,
+            "rmse": 0.31516795545481585,
+            "mae": 0.1623775415732096,
+            "r2": 0.5505847217813438,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20624224866572072
+          },
+          "poisson_boosting": {
+            "rows": 3984,
+            "rmse": 0.31481659577758986,
+            "mae": 0.15760827688522983,
+            "r2": 0.5515862093038988,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.1989763552484171
+          },
+          "gradient_boosting": {
+            "rows": 3984,
+            "rmse": 0.31425590344147825,
+            "mae": 0.15819039317004696,
+            "r2": 0.5531820481903025,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20414562531705965
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 31632,
+          "test": 6672,
+          "validation": 3984,
+          "calibration": 2592,
+          "purged": 288
+        },
+        "features": [
+          "airport",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.5,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 3984,
+            "rmse": 0.31425590344147825,
+            "mae": 0.15819039317004696,
+            "r2": 0.5531820481903025,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20414562531705965
+          },
+          "baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.3325957726596021,
+                "mae": 0.17581993129869042,
+                "r2": 0.5736573604893827,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.2334505781900062
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.4952827584649718,
+                "mae": 0.3480205113348577,
+                "r2": 0.054564861917535845,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.2285395561817631
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.29477720010984854,
+                "mae": 0.14056085504140353,
+                "r2": 0.5191458451193317,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17484067244411317
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.41323989201517697,
+                "mae": 0.27825681565429583,
+                "r2": 0.05500377676930679,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17694826675687383
+              }
+            }
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 2592,
+            "rmse": 0.3285483569205029,
+            "mae": 0.1658020517026055,
+            "r2": 0.5016803567629715,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.19825238669045514
+          },
+          "baseline": {
+            "rows": 2592,
+            "rmse": 0.4537139818218206,
+            "mae": 0.3133809748596906,
+            "r2": 0.049671544563816394,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.2030756830874358
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.3444934303971479,
+                "mae": 0.18351982623298105,
+                "r2": 0.5276683029203966,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.23276439941963545
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4873604172327114,
+                "mae": 0.34868966625918313,
+                "r2": 0.0546650606818907,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.22889923598975326
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.3117889062868173,
+                "mae": 0.14808427717222994,
+                "r2": 0.45846296961420996,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.16374037396127483
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4173638440449535,
+                "mae": 0.27807228346019797,
+                "r2": 0.02963194835089411,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.17725213018511823
+              }
+            }
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 6672,
+            "rmse": 0.3399444400514401,
+            "mae": 0.1834280636452665,
+            "r2": 0.4997603671479447,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.2183860662968156
+          },
+          "baseline": {
+            "rows": 6672,
+            "rmse": 0.468389483867945,
+            "mae": 0.3248778238606163,
+            "r2": 0.05032176747777639,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.2029057826647995
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.34590271792141114,
+                "mae": 0.19343415073885847,
+                "r2": 0.5448634938609438,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.2475540301985941
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.49884381065543554,
+                "mae": 0.35708398929147267,
+                "r2": 0.053407849936702334,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.2287276064088118
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.33387985021314925,
+                "mae": 0.17342197655167446,
+                "r2": 0.4342094830645049,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.18921810239503709
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.4358121955233973,
+                "mae": 0.29267165842976,
+                "r2": 0.03600672905582569,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.17708395892078724
+              }
+            }
+          },
+          "empirical_80pct_interval_coverage": 0.760341726618705
+        },
+        "feature_importance": [
+          {
+            "feature": "scheduled_arrivals_offset0",
+            "importance": 0.22640320477510187
+          },
+          {
+            "feature": "scheduled_arrivals_offset1",
+            "importance": 0.006865526694018
+          },
+          {
+            "feature": "scheduled_arrivals_offset-1",
+            "importance": 0.00461413932749468
+          },
+          {
+            "feature": "hour_cos",
+            "importance": 0.0012103010925513871
+          },
+          {
+            "feature": "hour_sin",
+            "importance": 0.0005756296780084075
+          },
+          {
+            "feature": "crosswind_kt",
+            "importance": 0.00027801633326864084
+          },
+          {
+            "feature": "wind_speed_kt_lag6h",
+            "importance": 0.00019597838919514776
+          },
+          {
+            "feature": "dewpoint_spread_c",
+            "importance": 0.00015608393768245382
+          },
+          {
+            "feature": "snow_depth_cm",
+            "importance": 0.00012511800290149894
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.00011505952227653521
+          },
+          {
+            "feature": "weather_age_minutes",
+            "importance": 0.00010841448106543167
+          },
+          {
+            "feature": "sea_level_pressure_hpa_past3h_mean",
+            "importance": 0.00010552446300569202
+          },
+          {
+            "feature": "airport",
+            "importance": 0.00010535174561986799
+          },
+          {
+            "feature": "precipitation_mm",
+            "importance": 8.698821720647121e-05
+          },
+          {
+            "feature": "hour",
+            "importance": 7.977150635892633e-05
+          }
+        ],
+        "weather_unmatched_fraction": 6.641870350690754e-05
+      }
+    },
+    "6": {
+      "delay": {
+        "selected_model": "gradient_boosting_small",
+        "selection_rule": "validation PR-AUC",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "logistic_regression": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9100877192982456,
+            "precision": 0.3333333333333333,
+            "recall": 0.00819672131147541,
+            "f1": 0.016,
+            "threshold": 0.5,
+            "roc_auc": 0.6467515722442965,
+            "pr_auc": 0.18674063218155748,
+            "brier_score": 0.08082599345110215,
+            "log_loss": 0.3149210307919484,
+            "confusion_matrix": [
+              [
+                1244,
+                2
+              ],
+              [
+                121,
+                1
+              ]
+            ]
+          },
+          "gradient_boosting_small": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6781306738941663,
+            "pr_auc": 0.20849300182294764,
+            "brier_score": 0.07964308401100162,
+            "log_loss": 0.2958585250312624,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "gradient_boosting": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6734731468568269,
+            "pr_auc": 0.2006074052243273,
+            "brier_score": 0.07947057790396228,
+            "log_loss": 0.29610625271511765,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "random_forest": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6852156408704575,
+            "pr_auc": 0.19417192105063558,
+            "brier_score": 0.07829121882775857,
+            "log_loss": 0.2859867143434617,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 11169,
+          "test": 2392,
+          "validation": 1368,
+          "calibration": 875,
+          "purged": 96
+        },
+        "features": [
+          "airport",
+          "carrier",
+          "destination",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h",
+          "planned_elapsed_minutes",
+          "distance_miles"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.2,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9115497076023392,
+            "precision": 0.5555555555555556,
+            "recall": 0.040983606557377046,
+            "f1": 0.07633587786259542,
+            "threshold": 0.2,
+            "roc_auc": 0.6781306738941663,
+            "pr_auc": 0.20849300182294764,
+            "brier_score": 0.07964308401100162,
+            "log_loss": 0.2958585250312624,
+            "confusion_matrix": [
+              [
+                1242,
+                4
+              ],
+              [
+                117,
+                5
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9291666666666667,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.2,
+                "roc_auc": 0.6848090506755766,
+                "pr_auc": 0.16845282234083175,
+                "brier_score": 0.06508083657640991,
+                "log_loss": 0.2510720143502853,
+                "confusion_matrix": [
+                  [
+                    669,
+                    0
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9291666666666667,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.07083333333333333,
+                "brier_score": 0.06601136482058388,
+                "log_loss": 0.25711641891376313,
+                "confusion_matrix": [
+                  [
+                    669,
+                    0
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8919753086419753,
+                "precision": 0.5555555555555556,
+                "recall": 0.07042253521126761,
+                "f1": 0.125,
+                "threshold": 0.2,
+                "roc_auc": 0.6577001000805526,
+                "pr_auc": 0.2512465038890573,
+                "brier_score": 0.09582335893832576,
+                "log_loss": 0.3456213146767926,
+                "confusion_matrix": [
+                  [
+                    573,
+                    4
+                  ],
+                  [
+                    66,
+                    5
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8904320987654321,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1095679012345679,
+                "brier_score": 0.09780535550516503,
+                "log_loss": 0.3467609232270426,
+                "confusion_matrix": [
+                  [
+                    577,
+                    0
+                  ],
+                  [
+                    71,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9115497076023392,
+            "precision": 0.5555555555555556,
+            "recall": 0.040983606557377046,
+            "f1": 0.07633587786259542,
+            "threshold": 0.2,
+            "roc_auc": 0.6781306738941663,
+            "pr_auc": 0.20849300182294764,
+            "brier_score": 0.07964308401100162,
+            "log_loss": 0.2958585250312624,
+            "confusion_matrix": [
+              [
+                1242,
+                4
+              ],
+              [
+                117,
+                5
+              ]
+            ]
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8411428571428572,
+            "precision": 0.0958904109589041,
+            "recall": 0.0875,
+            "f1": 0.0915032679738562,
+            "threshold": 0.2,
+            "roc_auc": 0.6358647798742139,
+            "pr_auc": 0.1279112010721076,
+            "brier_score": 0.08502064947245194,
+            "log_loss": 0.3055818715327576,
+            "confusion_matrix": [
+              [
+                729,
+                66
+              ],
+              [
+                73,
+                7
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.9085714285714286,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5165880503144653,
+            "pr_auc": 0.09435235895743979,
+            "brier_score": 0.08343168664095268,
+            "log_loss": 0.3075726803658052,
+            "confusion_matrix": [
+              [
+                795,
+                0
+              ],
+              [
+                80,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9117647058823529,
+                "precision": 0.4,
+                "recall": 0.05263157894736842,
+                "f1": 0.09302325581395349,
+                "threshold": 0.2,
+                "roc_auc": 0.7565138092756644,
+                "pr_auc": 0.22328390313146756,
+                "brier_score": 0.07456288318664794,
+                "log_loss": 0.2668117421309009,
+                "confusion_matrix": [
+                  [
+                    401,
+                    3
+                  ],
+                  [
+                    36,
+                    2
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9140271493212669,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.08597285067873303,
+                "brier_score": 0.07858286807326836,
+                "log_loss": 0.2931287481882887,
+                "confusion_matrix": [
+                  [
+                    404,
+                    0
+                  ],
+                  [
+                    38,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.76905311778291,
+                "precision": 0.07352941176470588,
+                "recall": 0.11904761904761904,
+                "f1": 0.09090909090909091,
+                "threshold": 0.2,
+                "roc_auc": 0.5326391426135673,
+                "pr_auc": 0.10557130978149065,
+                "brier_score": 0.09569578272493548,
+                "log_loss": 0.34515784658038035,
+                "confusion_matrix": [
+                  [
+                    328,
+                    63
+                  ],
+                  [
+                    37,
+                    5
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.9030023094688222,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.09699769053117784,
+                "brier_score": 0.08838128896639487,
+                "log_loss": 0.3223168328426235,
+                "confusion_matrix": [
+                  [
+                    391,
+                    0
+                  ],
+                  [
+                    42,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8411428571428572,
+            "precision": 0.0958904109589041,
+            "recall": 0.0875,
+            "f1": 0.0915032679738562,
+            "threshold": 0.2,
+            "roc_auc": 0.6358647798742139,
+            "pr_auc": 0.1279112010721076,
+            "brier_score": 0.08502064947245194,
+            "log_loss": 0.3055818715327576,
+            "confusion_matrix": [
+              [
+                729,
+                66
+              ],
+              [
+                73,
+                7
+              ]
+            ]
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7771739130434783,
+            "precision": 0.3590308370044053,
+            "recall": 0.4024691358024691,
+            "f1": 0.37951105937136204,
+            "threshold": 0.2,
+            "roc_auc": 0.7161643273872765,
+            "pr_auc": 0.3233569974904246,
+            "brier_score": 0.13117163358667608,
+            "log_loss": 0.4207726321919841,
+            "confusion_matrix": [
+              [
+                1696,
+                291
+              ],
+              [
+                242,
+                163
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.830685618729097,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5190335949101257,
+            "pr_auc": 0.17500421971784963,
+            "brier_score": 0.1447393759222666,
+            "log_loss": 0.4747156175758858,
+            "confusion_matrix": [
+              [
+                1987,
+                0
+              ],
+              [
+                405,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.7976391231028668,
+                "precision": 0.3375,
+                "recall": 0.2872340425531915,
+                "f1": 0.3103448275862069,
+                "threshold": 0.2,
+                "roc_auc": 0.7225381614292414,
+                "pr_auc": 0.29647385639387364,
+                "brier_score": 0.1259402845581388,
+                "log_loss": 0.4066108415869003,
+                "confusion_matrix": [
+                  [
+                    892,
+                    106
+                  ],
+                  [
+                    134,
+                    54
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.8414839797639123,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.15851602023608768,
+                "brier_score": 0.13882102965029122,
+                "log_loss": 0.465686990906047,
+                "confusion_matrix": [
+                  [
+                    998,
+                    0
+                  ],
+                  [
+                    188,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.7570480928689884,
+                "precision": 0.3707482993197279,
+                "recall": 0.5023041474654378,
+                "f1": 0.42661448140900193,
+                "threshold": 0.2,
+                "roc_auc": 0.7126595313424628,
+                "pr_auc": 0.3481570325013988,
+                "brier_score": 0.13631622724160572,
+                "log_loss": 0.43469956723147773,
+                "confusion_matrix": [
+                  [
+                    804,
+                    185
+                  ],
+                  [
+                    108,
+                    109
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.8200663349917081,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1799336650082919,
+                "brier_score": 0.15055957383152266,
+                "log_loss": 0.48359451577690477,
+                "confusion_matrix": [
+                  [
+                    989,
+                    0
+                  ],
+                  [
+                    217,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7771739130434783,
+            "precision": 0.3590308370044053,
+            "recall": 0.4024691358024691,
+            "f1": 0.37951105937136204,
+            "threshold": 0.2,
+            "roc_auc": 0.7161643273872765,
+            "pr_auc": 0.3233569974904246,
+            "brier_score": 0.13117163358667608,
+            "log_loss": 0.4207726321919841,
+            "confusion_matrix": [
+              [
+                1696,
+                291
+              ],
+              [
+                242,
+                163
+              ]
+            ]
+          }
+        },
+        "feature_importance": [
+          {
+            "feature": "month",
+            "importance": 0.05210603608901175
+          },
+          {
+            "feature": "temperature_c",
+            "importance": 0.03916098051906129
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.019397245617655642
+          },
+          {
+            "feature": "hour",
+            "importance": 0.009552126132449934
+          },
+          {
+            "feature": "carrier",
+            "importance": 0.0072953276289052515
+          },
+          {
+            "feature": "weather_age_minutes",
+            "importance": 0.0062837950499498585
+          },
+          {
+            "feature": "crosswind_kt",
+            "importance": 0.005533682391824668
+          },
+          {
+            "feature": "visibility_m_past6h_mean",
+            "importance": 0.005301089963762162
+          },
+          {
+            "feature": "absolute_crosswind_kt_past6h_mean",
+            "importance": 0.005208776407198079
+          },
+          {
+            "feature": "wind_speed_kt_past3h_mean",
+            "importance": 0.0044151282228828415
+          },
+          {
+            "feature": "dew_point_c",
+            "importance": 0.003882018340615606
+          },
+          {
+            "feature": "distance_miles",
+            "importance": 0.0038255334055156964
+          },
+          {
+            "feature": "wind_speed_kt_past6h_mean",
+            "importance": 0.0028850340613847114
+          },
+          {
+            "feature": "wind_direction_cos",
+            "importance": 0.0023128092129022226
+          },
+          {
+            "feature": "destination",
+            "importance": 0.001947204673786257
+          }
+        ],
+        "weather_unmatched_fraction": 0.00012578616352201257
+      },
+      "throughput": {
+        "selected_model": "gradient_boosting",
+        "selection_rule": "validation RMSE",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "ridge_regression": {
+            "rows": 3984,
+            "rmse": 0.315358365922358,
+            "mae": 0.16088356112630958,
+            "r2": 0.5500415242793224,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20404938432580402
+          },
+          "poisson_boosting": {
+            "rows": 3984,
+            "rmse": 0.31577847320857544,
+            "mae": 0.15684251605153937,
+            "r2": 0.5488418938645966,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.19869144424766233
+          },
+          "gradient_boosting": {
+            "rows": 3984,
+            "rmse": 0.3144992341386852,
+            "mae": 0.15808557353190497,
+            "r2": 0.5524898313335727,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20367294804528474
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 31632,
+          "test": 6672,
+          "validation": 3984,
+          "calibration": 2592,
+          "purged": 288
+        },
+        "features": [
+          "airport",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.5,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 3984,
+            "rmse": 0.3144992341386852,
+            "mae": 0.15808557353190497,
+            "r2": 0.5524898313335727,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20367294804528474
+          },
+          "baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.3329475917880989,
+                "mae": 0.17588956045743329,
+                "r2": 0.5727549146937669,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.23229551581303817
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.4952827584649718,
+                "mae": 0.3480205113348577,
+                "r2": 0.054564861917535845,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.2285395561817631
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.2948990296188588,
+                "mae": 0.1402815866063766,
+                "r2": 0.5187482951636354,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17505038027753134
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.41323989201517697,
+                "mae": 0.27825681565429583,
+                "r2": 0.05500377676930679,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17694826675687383
+              }
+            }
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 2592,
+            "rmse": 0.32842310222954285,
+            "mae": 0.1651716545781084,
+            "r2": 0.5020602398078702,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.19854654360011553
+          },
+          "baseline": {
+            "rows": 2592,
+            "rmse": 0.4537139818218206,
+            "mae": 0.3133809748596906,
+            "r2": 0.049671544563816394,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.2030756830874358
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.34438474268153013,
+                "mae": 0.18363311111858238,
+                "r2": 0.5279662973103064,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.23210243518945756
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4873604172327114,
+                "mae": 0.34868966625918313,
+                "r2": 0.0546650606818907,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.22889923598975326
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.31164501787182447,
+                "mae": 0.14671019803763446,
+                "r2": 0.4589626854374038,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.16499065201077345
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4173638440449535,
+                "mae": 0.27807228346019797,
+                "r2": 0.02963194835089411,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.17725213018511823
+              }
+            }
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 6672,
+            "rmse": 0.339887115826006,
+            "mae": 0.18334101083830834,
+            "r2": 0.49992906195996545,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.2187344285886069
+          },
+          "baseline": {
+            "rows": 6672,
+            "rmse": 0.468389483867945,
+            "mae": 0.3248778238606163,
+            "r2": 0.05032176747777639,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.2029057826647995
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.3460958400659032,
+                "mae": 0.193469987768568,
+                "r2": 0.5443551343103018,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.2478184484538062
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.49884381065543554,
+                "mae": 0.35708398929147267,
+                "r2": 0.053407849936702334,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.2287276064088118
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.33356284639947287,
+                "mae": 0.17321203390804868,
+                "r2": 0.4352833580255746,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.1896504087234076
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.4358121955233973,
+                "mae": 0.29267165842976,
+                "r2": 0.03600672905582569,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.17708395892078724
+              }
+            }
+          },
+          "empirical_80pct_interval_coverage": 0.747152278177458
+        },
+        "feature_importance": [
+          {
+            "feature": "scheduled_arrivals_offset0",
+            "importance": 0.2277081139708018
+          },
+          {
+            "feature": "scheduled_arrivals_offset1",
+            "importance": 0.00632292147324226
+          },
+          {
+            "feature": "scheduled_arrivals_offset-1",
+            "importance": 0.004579609631478382
+          },
+          {
+            "feature": "hour_cos",
+            "importance": 0.001215841856009689
+          },
+          {
+            "feature": "hour_sin",
+            "importance": 0.0008390204177459656
+          },
+          {
+            "feature": "wind_speed_kt_past6h_mean",
+            "importance": 0.0004108650808030412
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.00039264026724776524
+          },
+          {
+            "feature": "hour",
+            "importance": 0.00029950934367427295
+          },
+          {
+            "feature": "sea_level_pressure_hpa",
+            "importance": 0.0001487840255195924
+          },
+          {
+            "feature": "wind_speed_kt_lag3h",
+            "importance": 0.00014809079189861268
+          },
+          {
+            "feature": "headwind_kt",
+            "importance": 0.00013376251415513074
+          },
+          {
+            "feature": "absolute_crosswind_kt",
+            "importance": 9.724609371723064e-05
+          },
+          {
+            "feature": "airport",
+            "importance": 8.177006628495159e-05
+          },
+          {
+            "feature": "wind_speed_kt_lag6h",
+            "importance": 3.9862204238919063e-05
+          },
+          {
+            "feature": "absolute_crosswind_kt_past3h_mean",
+            "importance": 3.4852782019902107e-05
+          }
+        ],
+        "weather_unmatched_fraction": 6.641870350690754e-05
+      }
+    },
+    "9": {
+      "delay": {
+        "selected_model": "random_forest",
+        "selection_rule": "validation PR-AUC",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "logistic_regression": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9115497076023392,
+            "precision": 0.6666666666666666,
+            "recall": 0.01639344262295082,
+            "f1": 0.032,
+            "threshold": 0.5,
+            "roc_auc": 0.6393705760071573,
+            "pr_auc": 0.16423015043706052,
+            "brier_score": 0.08169211623735415,
+            "log_loss": 0.3207996135869848,
+            "confusion_matrix": [
+              [
+                1245,
+                1
+              ],
+              [
+                120,
+                2
+              ]
+            ]
+          },
+          "gradient_boosting_small": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9100877192982456,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6800548640896772,
+            "pr_auc": 0.1828469213446494,
+            "brier_score": 0.0796644943862286,
+            "log_loss": 0.294736224692271,
+            "confusion_matrix": [
+              [
+                1245,
+                1
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "gradient_boosting": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9100877192982456,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6714108096729205,
+            "pr_auc": 0.18290227906653783,
+            "brier_score": 0.07982014398909684,
+            "log_loss": 0.29662965372939704,
+            "confusion_matrix": [
+              [
+                1245,
+                1
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "random_forest": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6888140409967634,
+            "pr_auc": 0.1904505719359808,
+            "brier_score": 0.07859354567360881,
+            "log_loss": 0.2866793624108341,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 11169,
+          "test": 2392,
+          "validation": 1368,
+          "calibration": 875,
+          "purged": 96
+        },
+        "features": [
+          "airport",
+          "carrier",
+          "destination",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h",
+          "planned_elapsed_minutes",
+          "distance_miles"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.2,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9071637426900585,
+            "precision": 0.391304347826087,
+            "recall": 0.07377049180327869,
+            "f1": 0.12413793103448276,
+            "threshold": 0.2,
+            "roc_auc": 0.6888140409967634,
+            "pr_auc": 0.1904505719359808,
+            "brier_score": 0.07859354567360881,
+            "log_loss": 0.2866793624108341,
+            "confusion_matrix": [
+              [
+                1232,
+                14
+              ],
+              [
+                113,
+                9
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9277777777777778,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.2,
+                "roc_auc": 0.6899088484422169,
+                "pr_auc": 0.13341723921417048,
+                "brier_score": 0.06427301536818157,
+                "log_loss": 0.24390600045489358,
+                "confusion_matrix": [
+                  [
+                    668,
+                    1
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9291666666666667,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.07083333333333333,
+                "brier_score": 0.06601136482058388,
+                "log_loss": 0.25711641891376313,
+                "confusion_matrix": [
+                  [
+                    669,
+                    0
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8842592592592593,
+                "precision": 0.4090909090909091,
+                "recall": 0.1267605633802817,
+                "f1": 0.1935483870967742,
+                "threshold": 0.2,
+                "roc_auc": 0.6730539214489711,
+                "pr_auc": 0.23160113487626566,
+                "brier_score": 0.09450524601297242,
+                "log_loss": 0.3342053201396567,
+                "confusion_matrix": [
+                  [
+                    564,
+                    13
+                  ],
+                  [
+                    62,
+                    9
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8904320987654321,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1095679012345679,
+                "brier_score": 0.09780535550516503,
+                "log_loss": 0.3467609232270426,
+                "confusion_matrix": [
+                  [
+                    577,
+                    0
+                  ],
+                  [
+                    71,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9071637426900585,
+            "precision": 0.391304347826087,
+            "recall": 0.07377049180327869,
+            "f1": 0.12413793103448276,
+            "threshold": 0.2,
+            "roc_auc": 0.6888140409967634,
+            "pr_auc": 0.1904505719359808,
+            "brier_score": 0.07859354567360881,
+            "log_loss": 0.2866793624108341,
+            "confusion_matrix": [
+              [
+                1232,
+                14
+              ],
+              [
+                113,
+                9
+              ]
+            ]
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8331428571428572,
+            "precision": 0.15625,
+            "recall": 0.1875,
+            "f1": 0.17045454545454544,
+            "threshold": 0.2,
+            "roc_auc": 0.6794811320754717,
+            "pr_auc": 0.16300138200380213,
+            "brier_score": 0.08075166521445216,
+            "log_loss": 0.29011230622994083,
+            "confusion_matrix": [
+              [
+                714,
+                81
+              ],
+              [
+                65,
+                15
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.9085714285714286,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5165880503144653,
+            "pr_auc": 0.09435235895743979,
+            "brier_score": 0.08343168664095268,
+            "log_loss": 0.3075726803658052,
+            "confusion_matrix": [
+              [
+                795,
+                0
+              ],
+              [
+                80,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.8959276018099548,
+                "precision": 0.3181818181818182,
+                "recall": 0.18421052631578946,
+                "f1": 0.23333333333333334,
+                "threshold": 0.2,
+                "roc_auc": 0.8178087545596665,
+                "pr_auc": 0.3078808903328422,
+                "brier_score": 0.07106377457944002,
+                "log_loss": 0.2498809566555873,
+                "confusion_matrix": [
+                  [
+                    389,
+                    15
+                  ],
+                  [
+                    31,
+                    7
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9140271493212669,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.08597285067873303,
+                "brier_score": 0.07858286807326836,
+                "log_loss": 0.2931287481882887,
+                "confusion_matrix": [
+                  [
+                    404,
+                    0
+                  ],
+                  [
+                    38,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.76905311778291,
+                "precision": 0.10810810810810811,
+                "recall": 0.19047619047619047,
+                "f1": 0.13793103448275862,
+                "threshold": 0.2,
+                "roc_auc": 0.5590062111801243,
+                "pr_auc": 0.12260763716545732,
+                "brier_score": 0.09064092078183178,
+                "log_loss": 0.33117987323193687,
+                "confusion_matrix": [
+                  [
+                    325,
+                    66
+                  ],
+                  [
+                    34,
+                    8
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.9030023094688222,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.09699769053117784,
+                "brier_score": 0.08838128896639487,
+                "log_loss": 0.3223168328426235,
+                "confusion_matrix": [
+                  [
+                    391,
+                    0
+                  ],
+                  [
+                    42,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8331428571428572,
+            "precision": 0.15625,
+            "recall": 0.1875,
+            "f1": 0.17045454545454544,
+            "threshold": 0.2,
+            "roc_auc": 0.6794811320754717,
+            "pr_auc": 0.16300138200380213,
+            "brier_score": 0.08075166521445216,
+            "log_loss": 0.29011230622994083,
+            "confusion_matrix": [
+              [
+                714,
+                81
+              ],
+              [
+                65,
+                15
+              ]
+            ]
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7775919732441472,
+            "precision": 0.3651804670912951,
+            "recall": 0.4246913580246914,
+            "f1": 0.3926940639269406,
+            "threshold": 0.2,
+            "roc_auc": 0.7131434571629169,
+            "pr_auc": 0.34816898184526535,
+            "brier_score": 0.13100661480234008,
+            "log_loss": 0.42161265341679927,
+            "confusion_matrix": [
+              [
+                1688,
+                299
+              ],
+              [
+                233,
+                172
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.830685618729097,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5190335949101257,
+            "pr_auc": 0.17500421971784963,
+            "brier_score": 0.1447393759222666,
+            "log_loss": 0.4747156175758858,
+            "confusion_matrix": [
+              [
+                1987,
+                0
+              ],
+              [
+                405,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.7951096121416527,
+                "precision": 0.35294117647058826,
+                "recall": 0.35106382978723405,
+                "f1": 0.352,
+                "threshold": 0.2,
+                "roc_auc": 0.7111723446893787,
+                "pr_auc": 0.32583801058949124,
+                "brier_score": 0.12503332224770586,
+                "log_loss": 0.4072408837031299,
+                "confusion_matrix": [
+                  [
+                    877,
+                    121
+                  ],
+                  [
+                    122,
+                    66
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.8414839797639123,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.15851602023608768,
+                "brier_score": 0.13882102965029122,
+                "log_loss": 0.465686990906047,
+                "confusion_matrix": [
+                  [
+                    998,
+                    0
+                  ],
+                  [
+                    188,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.7603648424543947,
+                "precision": 0.3732394366197183,
+                "recall": 0.48847926267281105,
+                "f1": 0.4231536926147705,
+                "threshold": 0.2,
+                "roc_auc": 0.7148378709584229,
+                "pr_auc": 0.3715239037351665,
+                "brier_score": 0.13688084777895387,
+                "log_loss": 0.4357460853242718,
+                "confusion_matrix": [
+                  [
+                    811,
+                    178
+                  ],
+                  [
+                    111,
+                    106
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.8200663349917081,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1799336650082919,
+                "brier_score": 0.15055957383152266,
+                "log_loss": 0.48359451577690477,
+                "confusion_matrix": [
+                  [
+                    989,
+                    0
+                  ],
+                  [
+                    217,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7775919732441472,
+            "precision": 0.3651804670912951,
+            "recall": 0.4246913580246914,
+            "f1": 0.3926940639269406,
+            "threshold": 0.2,
+            "roc_auc": 0.7131434571629169,
+            "pr_auc": 0.34816898184526535,
+            "brier_score": 0.13100661480234008,
+            "log_loss": 0.42161265341679927,
+            "confusion_matrix": [
+              [
+                1688,
+                299
+              ],
+              [
+                233,
+                172
+              ]
+            ]
+          }
+        },
+        "feature_importance": [
+          {
+            "feature": "hour",
+            "importance": 0.03089676507504263
+          },
+          {
+            "feature": "month",
+            "importance": 0.022710623450672512
+          },
+          {
+            "feature": "temperature_c",
+            "importance": 0.022296045312305918
+          },
+          {
+            "feature": "dew_point_c",
+            "importance": 0.013754351630552386
+          },
+          {
+            "feature": "carrier",
+            "importance": 0.00954691392926113
+          },
+          {
+            "feature": "visibility_m_past3h_mean",
+            "importance": 0.00924705816258517
+          },
+          {
+            "feature": "weather_age_minutes",
+            "importance": 0.005776883748246267
+          },
+          {
+            "feature": "dewpoint_spread_c",
+            "importance": 0.004311082946607092
+          },
+          {
+            "feature": "precipitation_mm",
+            "importance": 0.0035163208350885294
+          },
+          {
+            "feature": "sea_level_pressure_hpa_past3h_mean",
+            "importance": 0.003450240473044805
+          },
+          {
+            "feature": "visibility_m_lag6h",
+            "importance": 0.003355610001377421
+          },
+          {
+            "feature": "visibility_m",
+            "importance": 0.0023188050511150776
+          },
+          {
+            "feature": "absolute_crosswind_kt_past6h_mean",
+            "importance": 0.0022748770506246657
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.0021620889142245914
+          },
+          {
+            "feature": "wind_speed_kt_lag3h",
+            "importance": 0.001836643895936338
+          }
+        ],
+        "weather_unmatched_fraction": 0.0
+      },
+      "throughput": {
+        "selected_model": "gradient_boosting",
+        "selection_rule": "validation RMSE",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "ridge_regression": {
+            "rows": 3984,
+            "rmse": 0.3160047070713507,
+            "mae": 0.16290773273564788,
+            "r2": 0.5481952139173261,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20674394391553974
+          },
+          "poisson_boosting": {
+            "rows": 3984,
+            "rmse": 0.31500217864566343,
+            "mae": 0.1570263330215387,
+            "r2": 0.5510573779350415,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.1991905232597234
+          },
+          "gradient_boosting": {
+            "rows": 3984,
+            "rmse": 0.31445841256574525,
+            "mae": 0.1581848053892957,
+            "r2": 0.5526059962168122,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20380713162506942
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 31632,
+          "test": 6672,
+          "validation": 3984,
+          "calibration": 2592,
+          "purged": 288
+        },
+        "features": [
+          "airport",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.5,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 3984,
+            "rmse": 0.31445841256574525,
+            "mae": 0.1581848053892957,
+            "r2": 0.5526059962168122,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20380713162506942
+          },
+          "baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.33243608454046775,
+                "mae": 0.17619669043648356,
+                "r2": 0.5740666591987866,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.23362706347730583
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.4952827584649718,
+                "mae": 0.3480205113348577,
+                "r2": 0.054564861917535845,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.2285395561817631
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.29538861887713264,
+                "mae": 0.14017292034210785,
+                "r2": 0.5171490274465516,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.173987199772833
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.41323989201517697,
+                "mae": 0.27825681565429583,
+                "r2": 0.05500377676930679,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17694826675687383
+              }
+            }
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 2592,
+            "rmse": 0.32842393202069403,
+            "mae": 0.165386046504177,
+            "r2": 0.5020577236235577,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.19817416882651173
+          },
+          "baseline": {
+            "rows": 2592,
+            "rmse": 0.4537139818218206,
+            "mae": 0.3133809748596906,
+            "r2": 0.049671544563816394,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.2030756830874358
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.3456658528923464,
+                "mae": 0.18476359774078754,
+                "r2": 0.5244478372105532,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.23263204101181986
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4873604172327114,
+                "mae": 0.34868966625918313,
+                "r2": 0.0546650606818907,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.22889923598975326
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.31022520270292947,
+                "mae": 0.14600849526756643,
+                "r2": 0.46388125042552597,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.1637162966412036
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4173638440449535,
+                "mae": 0.27807228346019797,
+                "r2": 0.02963194835089411,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.17725213018511823
+              }
+            }
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 6672,
+            "rmse": 0.3399472227669065,
+            "mae": 0.18355012408427335,
+            "r2": 0.49975217739634625,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.21718887735679487
+          },
+          "baseline": {
+            "rows": 6672,
+            "rmse": 0.468389483867945,
+            "mae": 0.3248778238606163,
+            "r2": 0.05032176747777639,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.2029057826647995
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.3467382491023866,
+                "mae": 0.19453981020991773,
+                "r2": 0.5426620654907112,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.24661950548807487
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.49884381065543554,
+                "mae": 0.35708398929147267,
+                "r2": 0.053407849936702334,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.2287276064088118
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.3330177399828375,
+                "mae": 0.172560437958629,
+                "r2": 0.4371275630437379,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.18775824922551487
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.4358121955233973,
+                "mae": 0.29267165842976,
+                "r2": 0.03600672905582569,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.17708395892078724
+              }
+            }
+          },
+          "empirical_80pct_interval_coverage": 0.7547961630695443
+        },
+        "feature_importance": [
+          {
+            "feature": "scheduled_arrivals_offset0",
+            "importance": 0.22714021897654557
+          },
+          {
+            "feature": "scheduled_arrivals_offset1",
+            "importance": 0.006468241775881976
+          },
+          {
+            "feature": "scheduled_arrivals_offset-1",
+            "importance": 0.004828163008351739
+          },
+          {
+            "feature": "hour_cos",
+            "importance": 0.0011663142221818162
+          },
+          {
+            "feature": "hour_sin",
+            "importance": 0.0006750734381816975
+          },
+          {
+            "feature": "hour",
+            "importance": 0.0004896199979452717
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.0002969683656853378
+          },
+          {
+            "feature": "airport",
+            "importance": 0.00018806966402157288
+          },
+          {
+            "feature": "visibility_m_past6h_mean",
+            "importance": 0.00015106209063349418
+          },
+          {
+            "feature": "crosswind_kt",
+            "importance": 0.00014979292940805328
+          },
+          {
+            "feature": "wind_speed_kt_past6h_mean",
+            "importance": 0.00013193579406035189
+          },
+          {
+            "feature": "dewpoint_spread_c",
+            "importance": 0.00010061746258900606
+          },
+          {
+            "feature": "absolute_crosswind_kt_past3h_mean",
+            "importance": 8.403377129546225e-05
+          },
+          {
+            "feature": "sea_level_pressure_hpa_past3h_mean",
+            "importance": 6.211243154603807e-05
+          },
+          {
+            "feature": "visibility_m_past3h_mean",
+            "importance": 5.124628452054386e-05
+          }
+        ],
+        "weather_unmatched_fraction": 6.641870350690754e-05
+      }
+    },
+    "12": {
+      "delay": {
+        "selected_model": "logistic_regression",
+        "selection_rule": "validation PR-AUC",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "logistic_regression": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9122807017543859,
+            "precision": 0.6666666666666666,
+            "recall": 0.03278688524590164,
+            "f1": 0.0625,
+            "threshold": 0.5,
+            "roc_auc": 0.6336539220587848,
+            "pr_auc": 0.1870262485783192,
+            "brier_score": 0.08073515935946465,
+            "log_loss": 0.3216287183130471,
+            "confusion_matrix": [
+              [
+                1244,
+                2
+              ],
+              [
+                118,
+                4
+              ]
+            ]
+          },
+          "gradient_boosting_small": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9100877192982456,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6573132384285452,
+            "pr_auc": 0.16885522581988271,
+            "brier_score": 0.08019043991256118,
+            "log_loss": 0.29934512176048633,
+            "confusion_matrix": [
+              [
+                1245,
+                1
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "gradient_boosting": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6704075994000473,
+            "pr_auc": 0.18683074626388296,
+            "brier_score": 0.0798247094342967,
+            "log_loss": 0.29743500490263913,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "random_forest": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.6763742336131358,
+            "pr_auc": 0.18046944531576786,
+            "brier_score": 0.07887504200184602,
+            "log_loss": 0.2889365603721131,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 11169,
+          "test": 2392,
+          "validation": 1368,
+          "calibration": 875,
+          "purged": 96
+        },
+        "features": [
+          "airport",
+          "carrier",
+          "destination",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h",
+          "planned_elapsed_minutes",
+          "distance_miles"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.2,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9130116959064327,
+            "precision": 0.6363636363636364,
+            "recall": 0.05737704918032787,
+            "f1": 0.10526315789473684,
+            "threshold": 0.2,
+            "roc_auc": 0.6336539220587848,
+            "pr_auc": 0.1870262485783192,
+            "brier_score": 0.08073515935946465,
+            "log_loss": 0.3216287183130471,
+            "confusion_matrix": [
+              [
+                1242,
+                4
+              ],
+              [
+                115,
+                7
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9108187134502924,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5594426755782438,
+            "pr_auc": 0.10104562788270008,
+            "brier_score": 0.08107167619749074,
+            "log_loss": 0.2995796051674218,
+            "confusion_matrix": [
+              [
+                1246,
+                0
+              ],
+              [
+                122,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9319444444444445,
+                "precision": 0.6666666666666666,
+                "recall": 0.0784313725490196,
+                "f1": 0.14035087719298245,
+                "threshold": 0.2,
+                "roc_auc": 0.6560567425774495,
+                "pr_auc": 0.20325208186991048,
+                "brier_score": 0.06411855349964903,
+                "log_loss": 0.26747339445305657,
+                "confusion_matrix": [
+                  [
+                    667,
+                    2
+                  ],
+                  [
+                    47,
+                    4
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 720,
+                "positive_rate": 0.07083333333333333,
+                "accuracy": 0.9291666666666667,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.07083333333333333,
+                "brier_score": 0.06601136482058388,
+                "log_loss": 0.25711641891376313,
+                "confusion_matrix": [
+                  [
+                    669,
+                    0
+                  ],
+                  [
+                    51,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8919753086419753,
+                "precision": 0.6,
+                "recall": 0.04225352112676056,
+                "f1": 0.07894736842105263,
+                "threshold": 0.2,
+                "roc_auc": 0.5925256914101594,
+                "pr_auc": 0.1847463257878851,
+                "brier_score": 0.09919805475925977,
+                "log_loss": 0.3818013003797033,
+                "confusion_matrix": [
+                  [
+                    575,
+                    2
+                  ],
+                  [
+                    68,
+                    3
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 648,
+                "positive_rate": 0.1095679012345679,
+                "accuracy": 0.8904320987654321,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1095679012345679,
+                "brier_score": 0.09780535550516503,
+                "log_loss": 0.3467609232270426,
+                "confusion_matrix": [
+                  [
+                    577,
+                    0
+                  ],
+                  [
+                    71,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 1368,
+            "positive_rate": 0.0891812865497076,
+            "accuracy": 0.9130116959064327,
+            "precision": 0.6363636363636364,
+            "recall": 0.05737704918032787,
+            "f1": 0.10526315789473684,
+            "threshold": 0.2,
+            "roc_auc": 0.6336539220587848,
+            "pr_auc": 0.1870262485783192,
+            "brier_score": 0.08073515935946465,
+            "log_loss": 0.3216287183130471,
+            "confusion_matrix": [
+              [
+                1242,
+                4
+              ],
+              [
+                115,
+                7
+              ]
+            ]
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8582857142857143,
+            "precision": 0.15625,
+            "recall": 0.125,
+            "f1": 0.1388888888888889,
+            "threshold": 0.2,
+            "roc_auc": 0.6372798742138364,
+            "pr_auc": 0.14075513080307703,
+            "brier_score": 0.08677590669141991,
+            "log_loss": 0.32665852875926965,
+            "confusion_matrix": [
+              [
+                741,
+                54
+              ],
+              [
+                70,
+                10
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.9085714285714286,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5165880503144653,
+            "pr_auc": 0.09435235895743979,
+            "brier_score": 0.08343168664095268,
+            "log_loss": 0.3075726803658052,
+            "confusion_matrix": [
+              [
+                795,
+                0
+              ],
+              [
+                80,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9027149321266968,
+                "precision": 0.35294117647058826,
+                "recall": 0.15789473684210525,
+                "f1": 0.21818181818181817,
+                "threshold": 0.2,
+                "roc_auc": 0.6933949973944762,
+                "pr_auc": 0.21517190645283465,
+                "brier_score": 0.08142675195809815,
+                "log_loss": 0.3202982927960986,
+                "confusion_matrix": [
+                  [
+                    393,
+                    11
+                  ],
+                  [
+                    32,
+                    6
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 442,
+                "positive_rate": 0.08597285067873303,
+                "accuracy": 0.9140271493212669,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.08597285067873303,
+                "brier_score": 0.07858286807326836,
+                "log_loss": 0.2931287481882887,
+                "confusion_matrix": [
+                  [
+                    404,
+                    0
+                  ],
+                  [
+                    38,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.812933025404157,
+                "precision": 0.0851063829787234,
+                "recall": 0.09523809523809523,
+                "f1": 0.0898876404494382,
+                "threshold": 0.2,
+                "roc_auc": 0.5692363902082572,
+                "pr_auc": 0.11340809735666232,
+                "brier_score": 0.09223624477947583,
+                "log_loss": 0.33315096362236796,
+                "confusion_matrix": [
+                  [
+                    348,
+                    43
+                  ],
+                  [
+                    38,
+                    4
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 433,
+                "positive_rate": 0.09699769053117784,
+                "accuracy": 0.9030023094688222,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.09699769053117784,
+                "brier_score": 0.08838128896639487,
+                "log_loss": 0.3223168328426235,
+                "confusion_matrix": [
+                  [
+                    391,
+                    0
+                  ],
+                  [
+                    42,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 875,
+            "positive_rate": 0.09142857142857143,
+            "accuracy": 0.8582857142857143,
+            "precision": 0.15625,
+            "recall": 0.125,
+            "f1": 0.1388888888888889,
+            "threshold": 0.2,
+            "roc_auc": 0.6372798742138364,
+            "pr_auc": 0.14075513080307703,
+            "brier_score": 0.08677590669141991,
+            "log_loss": 0.32665852875926965,
+            "confusion_matrix": [
+              [
+                741,
+                54
+              ],
+              [
+                70,
+                10
+              ]
+            ]
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7717391304347826,
+            "precision": 0.34573304157549234,
+            "recall": 0.39012345679012345,
+            "f1": 0.3665893271461717,
+            "threshold": 0.2,
+            "roc_auc": 0.7044095261172933,
+            "pr_auc": 0.3043627180187164,
+            "brier_score": 0.13234826028490743,
+            "log_loss": 0.4251647659044769,
+            "confusion_matrix": [
+              [
+                1688,
+                299
+              ],
+              [
+                247,
+                158
+              ]
+            ]
+          },
+          "baseline": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.830685618729097,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "threshold": 0.5,
+            "roc_auc": 0.5190335949101257,
+            "pr_auc": 0.17500421971784963,
+            "brier_score": 0.1447393759222666,
+            "log_loss": 0.4747156175758858,
+            "confusion_matrix": [
+              [
+                1987,
+                0
+              ],
+              [
+                405,
+                0
+              ]
+            ]
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.7967959527824621,
+                "precision": 0.3146853146853147,
+                "recall": 0.2393617021276596,
+                "f1": 0.2719033232628399,
+                "threshold": 0.2,
+                "roc_auc": 0.7139864836055089,
+                "pr_auc": 0.2797745307407624,
+                "brier_score": 0.12748281730969085,
+                "log_loss": 0.4114641902212056,
+                "confusion_matrix": [
+                  [
+                    900,
+                    98
+                  ],
+                  [
+                    143,
+                    45
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1186,
+                "positive_rate": 0.15851602023608768,
+                "accuracy": 0.8414839797639123,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.15851602023608768,
+                "brier_score": 0.13882102965029122,
+                "log_loss": 0.465686990906047,
+                "confusion_matrix": [
+                  [
+                    998,
+                    0
+                  ],
+                  [
+                    188,
+                    0
+                  ]
+                ]
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.7470978441127695,
+                "precision": 0.35987261146496813,
+                "recall": 0.5207373271889401,
+                "f1": 0.4256120527306968,
+                "threshold": 0.2,
+                "roc_auc": 0.7005959564425268,
+                "pr_auc": 0.3315113870185059,
+                "brier_score": 0.1371330159802696,
+                "log_loss": 0.4386381346941615,
+                "confusion_matrix": [
+                  [
+                    788,
+                    201
+                  ],
+                  [
+                    104,
+                    113
+                  ]
+                ]
+              },
+              "baseline": {
+                "rows": 1206,
+                "positive_rate": 0.1799336650082919,
+                "accuracy": 0.8200663349917081,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "threshold": 0.5,
+                "roc_auc": 0.5,
+                "pr_auc": 0.1799336650082919,
+                "brier_score": 0.15055957383152266,
+                "log_loss": 0.48359451577690477,
+                "confusion_matrix": [
+                  [
+                    989,
+                    0
+                  ],
+                  [
+                    217,
+                    0
+                  ]
+                ]
+              }
+            }
+          },
+          "review_policy": {
+            "rows": 2392,
+            "positive_rate": 0.169314381270903,
+            "accuracy": 0.7717391304347826,
+            "precision": 0.34573304157549234,
+            "recall": 0.39012345679012345,
+            "f1": 0.3665893271461717,
+            "threshold": 0.2,
+            "roc_auc": 0.7044095261172933,
+            "pr_auc": 0.3043627180187164,
+            "brier_score": 0.13234826028490743,
+            "log_loss": 0.4251647659044769,
+            "confusion_matrix": [
+              [
+                1688,
+                299
+              ],
+              [
+                247,
+                158
+              ]
+            ]
+          }
+        },
+        "feature_importance": [
+          {
+            "feature": "month",
+            "importance": 0.021025284257959395
+          },
+          {
+            "feature": "destination",
+            "importance": 0.015011577494289843
+          },
+          {
+            "feature": "absolute_crosswind_kt_past3h_mean",
+            "importance": 0.013594744053848501
+          },
+          {
+            "feature": "snow_depth_cm",
+            "importance": 0.013077645653916226
+          },
+          {
+            "feature": "sea_level_pressure_hpa",
+            "importance": 0.012996010659680368
+          },
+          {
+            "feature": "visibility_m_past3h_mean",
+            "importance": 0.011431447940779493
+          },
+          {
+            "feature": "carrier",
+            "importance": 0.011337443833728991
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 0.010354584634480787
+          },
+          {
+            "feature": "wind_speed_kt",
+            "importance": 0.00952749795972592
+          },
+          {
+            "feature": "thunderstorm_indicator",
+            "importance": 0.009301200643719296
+          },
+          {
+            "feature": "wind_speed_kt_lag3h",
+            "importance": 0.00907210660571825
+          },
+          {
+            "feature": "precipitation_mm_past6h_mean",
+            "importance": 0.00850604793654601
+          },
+          {
+            "feature": "low_visibility_indicator",
+            "importance": 0.006367493772110461
+          },
+          {
+            "feature": "visibility_m_lag6h",
+            "importance": 0.005962435720436143
+          },
+          {
+            "feature": "precipitation_mm_past3h_mean",
+            "importance": 0.005079857024302928
+          }
+        ],
+        "weather_unmatched_fraction": 0.00012578616352201257
+      },
+      "throughput": {
+        "selected_model": "gradient_boosting",
+        "selection_rule": "validation RMSE",
+        "candidate_validation_metrics": {
+          "historical_baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "ridge_regression": {
+            "rows": 3984,
+            "rmse": 0.3160744334349185,
+            "mae": 0.1625860005118566,
+            "r2": 0.5479958106831133,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.2064128422460183
+          },
+          "poisson_boosting": {
+            "rows": 3984,
+            "rmse": 0.3143880573237192,
+            "mae": 0.15633414301564924,
+            "r2": 0.5528061689008059,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.19893382903570037
+          },
+          "gradient_boosting": {
+            "rows": 3984,
+            "rmse": 0.31401178491195236,
+            "mae": 0.15786225215613695,
+            "r2": 0.5538759678529104,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.204921655565145
+          }
+        },
+        "split_dates": {
+          "train_end": "2024-10-22",
+          "validation_start": "2024-10-24",
+          "validation_end": "2025-01-15",
+          "calibration_start": "2025-01-17",
+          "calibration_end": "2025-03-12",
+          "test_start": "2025-03-14"
+        },
+        "partition_rows": {
+          "train": 31632,
+          "test": 6672,
+          "validation": 3984,
+          "calibration": 2592,
+          "purged": 288
+        },
+        "features": [
+          "airport",
+          "hour",
+          "weekday",
+          "month",
+          "hour_sin",
+          "hour_cos",
+          "month_sin",
+          "month_cos",
+          "horizon",
+          "scheduled_arrivals_offset-1",
+          "scheduled_arrivals_offset0",
+          "scheduled_arrivals_offset1",
+          "scheduled_departures_offset-1",
+          "scheduled_departures_offset0",
+          "scheduled_departures_offset1",
+          "wind_speed_kt",
+          "wind_gust_kt",
+          "temperature_c",
+          "dew_point_c",
+          "visibility_m",
+          "sea_level_pressure_hpa",
+          "precipitation_mm",
+          "snow_depth_cm",
+          "ceiling_m",
+          "thunderstorm_indicator",
+          "crosswind_kt",
+          "headwind_kt",
+          "absolute_crosswind_kt",
+          "gust_difference_kt",
+          "wind_direction_sin",
+          "wind_direction_cos",
+          "precipitation_indicator",
+          "low_visibility_indicator",
+          "severe_weather_indicator",
+          "dewpoint_spread_c",
+          "weather_age_minutes",
+          "wind_speed_kt_past3h_mean",
+          "wind_speed_kt_past6h_mean",
+          "visibility_m_past3h_mean",
+          "visibility_m_past6h_mean",
+          "precipitation_mm_past3h_mean",
+          "precipitation_mm_past6h_mean",
+          "sea_level_pressure_hpa_past3h_mean",
+          "sea_level_pressure_hpa_past6h_mean",
+          "absolute_crosswind_kt_past3h_mean",
+          "absolute_crosswind_kt_past6h_mean",
+          "wind_speed_kt_lag3h",
+          "wind_speed_kt_lag6h",
+          "visibility_m_lag3h",
+          "visibility_m_lag6h"
+        ],
+        "calibrated": false,
+        "decision_threshold": 0.5,
+        "review_threshold": 0.2,
+        "threshold_rule": "validation F0.5 with a 20% minimum; precision-oriented review policy",
+        "validation": {
+          "model": {
+            "rows": 3984,
+            "rmse": 0.31401178491195236,
+            "mae": 0.15786225215613695,
+            "r2": 0.5538759678529104,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.204921655565145
+          },
+          "baseline": {
+            "rows": 3984,
+            "rmse": 0.45610975608146487,
+            "mae": 0.31313866349457675,
+            "r2": 0.0587555090129982,
+            "mean_actual": 0.20130522088353414,
+            "mean_predicted": 0.20274391146931847
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.3321173548533602,
+                "mae": 0.17588324405948924,
+                "r2": 0.5748830117345487,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.23462281764978546
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.4952827584649718,
+                "mae": 0.3480205113348577,
+                "r2": 0.054564861917535845,
+                "mean_actual": 0.2319277108433735,
+                "mean_predicted": 0.2285395561817631
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1992,
+                "rmse": 0.29479631058137024,
+                "mae": 0.13984126025278468,
+                "r2": 0.5190834953344549,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17522049348050453
+              },
+              "baseline": {
+                "rows": 1992,
+                "rmse": 0.41323989201517697,
+                "mae": 0.27825681565429583,
+                "r2": 0.05500377676930679,
+                "mean_actual": 0.1706827309236948,
+                "mean_predicted": 0.17694826675687383
+              }
+            }
+          }
+        },
+        "calibration": {
+          "model": {
+            "rows": 2592,
+            "rmse": 0.32837190178928466,
+            "mae": 0.1651075073380107,
+            "r2": 0.5022154831356642,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.19977768557037234
+          },
+          "baseline": {
+            "rows": 2592,
+            "rmse": 0.4537139818218206,
+            "mae": 0.3133809748596906,
+            "r2": 0.049671544563816394,
+            "mean_actual": 0.19791666666666666,
+            "mean_predicted": 0.2030756830874358
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.3445627716502492,
+                "mae": 0.1830230886548863,
+                "r2": 0.5274781375058488,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.2346795111501318
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4873604172327114,
+                "mae": 0.34868966625918313,
+                "r2": 0.0546650606818907,
+                "mean_actual": 0.2330246913580247,
+                "mean_predicted": 0.22889923598975326
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 1296,
+                "rmse": 0.3113401807703617,
+                "mae": 0.14719192602113507,
+                "r2": 0.4600206043811673,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.1648758599906129
+              },
+              "baseline": {
+                "rows": 1296,
+                "rmse": 0.4173638440449535,
+                "mae": 0.27807228346019797,
+                "r2": 0.02963194835089411,
+                "mean_actual": 0.16280864197530864,
+                "mean_predicted": 0.17725213018511823
+              }
+            }
+          }
+        },
+        "test": {
+          "model": {
+            "rows": 6672,
+            "rmse": 0.3394146056836277,
+            "mae": 0.18332356015444354,
+            "r2": 0.5013184900098142,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.21646082481509596
+          },
+          "baseline": {
+            "rows": 6672,
+            "rmse": 0.468389483867945,
+            "mae": 0.3248778238606163,
+            "r2": 0.05032176747777639,
+            "mean_actual": 0.21957434052757793,
+            "mean_predicted": 0.2029057826647995
+          },
+          "by_airport": {
+            "ATL": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.3459764492902742,
+                "mae": 0.1933522895415307,
+                "r2": 0.5446694426875252,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.24622024011386726
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.49884381065543554,
+                "mae": 0.35708398929147267,
+                "r2": 0.053407849936702334,
+                "mean_actual": 0.25209832134292565,
+                "mean_predicted": 0.2287276064088118
+              }
+            },
+            "DFW": {
+              "model": {
+                "rows": 3336,
+                "rmse": 0.33272337705553423,
+                "mae": 0.17329483076735647,
+                "r2": 0.43812219804406904,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.1867014095163246
+              },
+              "baseline": {
+                "rows": 3336,
+                "rmse": 0.4358121955233973,
+                "mae": 0.29267165842976,
+                "r2": 0.03600672905582569,
+                "mean_actual": 0.18705035971223022,
+                "mean_predicted": 0.17708395892078724
+              }
+            }
+          },
+          "empirical_80pct_interval_coverage": 0.7523980815347722
+        },
+        "feature_importance": [
+          {
+            "feature": "scheduled_arrivals_offset0",
+            "importance": 0.22829471352515035
+          },
+          {
+            "feature": "scheduled_arrivals_offset1",
+            "importance": 0.00678085313286899
+          },
+          {
+            "feature": "scheduled_arrivals_offset-1",
+            "importance": 0.004964204595340534
+          },
+          {
+            "feature": "hour_cos",
+            "importance": 0.001193703948687154
+          },
+          {
+            "feature": "hour_sin",
+            "importance": 0.0010876431801019673
+          },
+          {
+            "feature": "dewpoint_spread_c",
+            "importance": 0.00016352369496475117
+          },
+          {
+            "feature": "airport",
+            "importance": 0.0001582928540886236
+          },
+          {
+            "feature": "hour",
+            "importance": 0.00012388016557962622
+          },
+          {
+            "feature": "dew_point_c",
+            "importance": 0.00010372094384298453
+          },
+          {
+            "feature": "absolute_crosswind_kt_past6h_mean",
+            "importance": 0.00010106367098905444
+          },
+          {
+            "feature": "ceiling_m",
+            "importance": 8.488574851209241e-05
+          },
+          {
+            "feature": "gust_difference_kt",
+            "importance": 8.087335492125425e-05
+          },
+          {
+            "feature": "visibility_m_past6h_mean",
+            "importance": 6.949283254920752e-05
+          },
+          {
+            "feature": "visibility_m",
+            "importance": 5.67452078853517e-05
+          },
+          {
+            "feature": "absolute_crosswind_kt_past3h_mean",
+            "importance": 3.785322529738233e-05
+          }
+        ],
+        "weather_unmatched_fraction": 6.641870350690754e-05
+      }
+    }
+  }
+}

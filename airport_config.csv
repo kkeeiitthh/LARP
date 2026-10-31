@@ -1,0 +1,3 @@
+airport,icao,latitude,longitude,runway_heading,timezone,station
+ATL,KATL,33.6407,-84.4277,80,America/New_York,72219013874
+DFW,KDFW,32.8998,-97.0403,180,America/Chicago,72259003927

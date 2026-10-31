@@ -1,5 +1,14 @@
 data/.DS_Store
 DataSet/.DS_Store
+.venv/
+__pycache__/
+.pytest_cache/
+.publish-larp/
+outputs/cache/
+outputs/pytest-temp/
+outputs/*.joblib
+outputs/*.csv
+outputs/previous_run/
 .DS_Store
 .DS_Store
 DataSet/.DS_Store
